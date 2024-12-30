@@ -46,13 +46,46 @@ LinkedList.prototype.insertAtEnd = function(data){
     last.next = newNode
 }
 
+// Find node
+LinkedList.prototype.findNode = function(data){
+    let current = this.head
+    while(current){
+        if(current.data == data){
+            return current
+        }
+
+        current = current.next
+    }
+    return null;
+
+}
+
+// Insert value at given node
+LinkedList.prototype.insertAtGivenNode = function (prevNode, data) {
+    console.log("here");
+    
+    if (!prevNode) {
+        console.log("Please provide Previous node");
+        return
+    }
+    const newNode = new Node(data, prevNode.next)
+    prevNode.next = newNode
+}
+
+
+// Print all element in linked list
+LinkedList.prototype.printAllElement = function(){
+    let current = this.head
+    while(current){
+        console.log(current);
+        current = current.next
+    }
+}
 
 const insert = new LinkedList()
-insert.insertAtBegining(4)
-console.log(insert);
-insert.insertAtBegining(6)
-console.log(insert);
+
 insert.insertAtBegining(11)
-console.log(insert);
 insert.insertAtEnd(40)
-console.log(insert);
+insert.insertAtGivenNode(insert.findNode(11), 15)
+insert.insertAtGivenNode(insert.findNode(15), 25)
+insert.printAllElement();
